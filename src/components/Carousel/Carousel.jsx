@@ -8,7 +8,7 @@ import bgImg1 from "../../assets/images/bgImg-1.jpg";
 
 const Carousel = () => {
   return (
-    <div>
+    <section>
       <Swiper
         pagination={{
           dynamicBullets: true,
@@ -54,7 +54,7 @@ const Carousel = () => {
           ></Slide>
         </SwiperSlide>
       </Swiper>
-    </div>
+    </section>
   );
 };
 

@@ -1,10 +1,12 @@
 import Carousel from "../../components/Carousel/Carousel";
+import Services from "../../components/Services/Services";
 
 const Home = () => {
   return (
-    <div>
+    <>
       <Carousel />
-    </div>
+      <Services />
+    </>
   );
 };
 

@@ -8,6 +8,7 @@ export default {
         midnightOcean: "#17344d",
         errigalWhite: "#F0F2F5",
         walrus: "#9b9b9e",
+        iron: "#5e5e60",
         cocoBlack: "#1b1b1c",
       },
     },
