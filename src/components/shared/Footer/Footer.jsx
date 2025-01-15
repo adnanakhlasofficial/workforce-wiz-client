@@ -1,18 +1,17 @@
 import { Link } from "react-router-dom";
 import { FaFacebook, FaLinkedinIn, FaXTwitter } from "react-icons/fa6";
-import InputField from "../InputField/InputField";
 
 const Footer = () => {
   return (
-    <section className="wrapper py-20 grid grid-cols-3">
+    <section className="wrapper py-20 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
       <div className="space-y-3">
         <h2 className="text-2xl font-bold text-primary">
           <Link to={"/"}>Workforce Wiz</Link>
         </h2>
         <p>
-          Lorem ipsum dolor, sit amet consectetur adipisicing elit. Animi enim
-          rerum ipsam quis, nostrum ratione fuga accusamus voluptatibus cum
-          dolore temporibus esse ipsum id, a eius rem praesentium, error labore.
+          Our commitment to empowering your workforce with innovative employee
+          management solutions ensures a supportive and productive work
+          environment. Join us in fostering excellence and growth.
         </p>
       </div>
       <div className="space-y-3 lg:justify-self-center">
@@ -38,9 +37,9 @@ const Footer = () => {
           </Link>
         </ul>
       </div>
-      <div className="space-y-3 lg: justify-self-center">
+      <div className="space-y-3 lg: justify-self-center w-full">
         <h2 className="text-lg font-bold">Social </h2>
-        <ul className="flex items-center gap-4">
+        <ul className="flex items-center gap-4 !mb-6">
           <Link to={"/"}>
             <FaFacebook className="hover:text-primary transition" size={24} />
           </Link>
@@ -51,7 +50,12 @@ const Footer = () => {
             <FaLinkedinIn className="hover:text-primary transition" size={24} />
           </Link>
         </ul>
-        <InputField type={"text"} placeholder={"Enter your email"} />
+        <input
+          className="w-3/4 bg-inherit bg-white py-2 block px-4 rounded-md text-sm"
+          type="text"
+          placeholder="Your Email"
+        />
+        <button className="btn !rounded-md">Subscribe</button>
       </div>
     </section>
   );

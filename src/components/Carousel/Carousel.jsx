@@ -25,31 +25,27 @@ const Carousel = () => {
         <SwiperSlide>
           <Slide
             image={bgImg1}
-            title={
-              "A warm, inviting shot of your restaurant's interior or a beautifully set table."
-            }
+            title={"Empower Your Workforce"}
             desc={
-              "Experience the best in fine dining at EATOPIA. Enjoy a culinary journey like no other."
+              "Discover tools and resources designed to enhance productivity, streamline processes, and foster employee engagement. Image Type: A group of diverse employees collaborating in a modern office setting, showing teamwork and engagement."
             }
           ></Slide>
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgImg1}
-            title={"A close-up of a signature dish prepared by your chef."}
+            title={"Seamless Onboarding Experience"}
             desc={
-              "Indulge in our Chef's Special Creations, crafted with passion and the finest ingredients."
+              "Welcome new hires with our efficient onboarding process, ensuring a smooth transition from day one. Image Type: A new employee being welcomed by their team, receiving a welcome package, or participating in an orientation session."
             }
           ></Slide>
         </SwiperSlide>
         <SwiperSlide>
           <Slide
             image={bgImg1}
-            title={
-              "A vibrant scene of a group of people celebrating at your restaurant."
-            }
+            title={"Boost Professional Growth"}
             desc={
-              "Make your special moments unforgettable. Host your events and celebrations at EATOPIA."
+              "Unlock your potential with our comprehensive training and development programs tailored to your career aspirations. Image Type: Employees participating in a workshop or training session, with visuals of learning materials and engaged participants."
             }
           ></Slide>
         </SwiperSlide>
