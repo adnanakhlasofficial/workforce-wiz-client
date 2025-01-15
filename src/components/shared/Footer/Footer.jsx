@@ -18,19 +18,19 @@ const Footer = () => {
         <h2 className="text-lg font-bold">Company</h2>
         <ul className="space-y-2">
           <Link
-            className="block hover:text-primary transition-colors font-medium"
+            className="block hover:text-primary transition-colors text-iron font-medium"
             to={"/"}
           >
             Home
           </Link>
           <Link
-            className="block hover:text-primary transition-colors font-medium"
+            className="block hover:text-primary transition-colors text-iron font-medium"
             to={"/"}
           >
             About Us
           </Link>
           <Link
-            className="block hover:text-primary transition-colors font-medium"
+            className="block hover:text-primary transition-colors text-iron font-medium"
             to={"/"}
           >
             Contact Us
@@ -41,13 +41,22 @@ const Footer = () => {
         <h2 className="text-lg font-bold">Social </h2>
         <ul className="flex items-center gap-4 !mb-6">
           <Link to={"/"}>
-            <FaFacebook className="hover:text-primary transition" size={24} />
+            <FaFacebook
+              className="hover:text-primary transition text-iron"
+              size={24}
+            />
           </Link>
           <Link to={"/"}>
-            <FaXTwitter className="hover:text-primary transition" size={24} />
+            <FaXTwitter
+              className="hover:text-primary transition text-iron"
+              size={24}
+            />
           </Link>
           <Link to={"/"}>
-            <FaLinkedinIn className="hover:text-primary transition" size={24} />
+            <FaLinkedinIn
+              className="hover:text-primary transition text-iron"
+              size={24}
+            />
           </Link>
         </ul>
         <input

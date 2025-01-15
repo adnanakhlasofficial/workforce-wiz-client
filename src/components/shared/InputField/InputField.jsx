@@ -1,12 +1,14 @@
-const InputField = ({ label, type, placeholder }) => {
+const InputField = ({ label, type, placeholder, id }) => {
   return (
     <div className="flex flex-col gap-1">
-      <label className="capitalize font-semibold " htmlFor={type}>
+      <label className="capitalize font-semibold " htmlFor={id}>
         {label}:
       </label>
       <input
+        required
         className="input-field"
-        id={type}
+        name={id}
+        id={id}
         type={type}
         placeholder={placeholder}
       />
