@@ -11,6 +11,7 @@ import { useState } from "react";
 const SignUp = () => {
   const { createUser, updateUser } = useAuth();
   const [loading, setLoading] = useState(false);
+  const [passwordValidation, setPasswordValidation] = useState(false);
   const navigate = useNavigate();
 
   const handleSignUp = async (e) => {
@@ -27,10 +28,16 @@ const SignUp = () => {
     // image url get
     const imageURL = await getImageUrl(imageFile);
 
-    if (password !== confirmPassword)
-      return console.log("password ain't match");
+    if (password !== confirmPassword) {
+      setLoading(false);
+      return toast.error("Passwords do not match. Please try again.");
+    }
 
-    if (!regex.test(password)) return console.log("boom");
+    if (!regex.test(password)) {
+      setLoading(false);
+      toast.error("Password validation error");
+      return setPasswordValidation(true);
+    }
 
     try {
       await createUser(email, password);
@@ -46,7 +53,7 @@ const SignUp = () => {
   };
 
   return (
-    <section className="mx-auto my-20 flex gap-12 flex-col lg:flex-row justify-center items-center rounded-lg bg-white !w-max p-8 lg:p-20 ">
+    <section className="mx-auto my-20 flex flex-col  gap-12 lg:flex-row-reverse justify-center items-center  rounded-lg bg-white p-10 lg:p-20 w-fit ">
       <div className="max-w-lg">
         <img className="w-40 lg:w-full" src={signUp} alt="" />
       </div>
@@ -86,6 +93,12 @@ const SignUp = () => {
             id={"password"}
             placeholder={"Enter your password"}
           />
+          {passwordValidation && (
+            <p className="text-sm -mt-4 text-red-500 font-medium">
+              Password must be at least 6 characters, with one uppercase letter
+              and one special character (!@#$%^&*).
+            </p>
+          )}
           <InputField
             label={"confirm password"}
             type={"password"}
@@ -96,7 +109,7 @@ const SignUp = () => {
         </form>
         <div className="my-6 border border-[#e0e0e1] relative before:content-['OR'] before:absolute before:bottom-full before:bg-white before:px-2 before:left-1/2 before:-translate-x-1/2 before:translate-y-1/2 before:text-sm before:font-medium before:text-iron"></div>
         <SocialLogin label={"Sign Up"} alert={"Sign up"} />
-        <p className="mt-2 text-primary flex gap-1">
+        <p className="mt-2 text-primary">
           Already have an account?
           <Link className="hover:underline underline-offset-2" to={"/sign-in"}>
             Sign in here!

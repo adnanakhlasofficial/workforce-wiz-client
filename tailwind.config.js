@@ -9,6 +9,7 @@ export default {
         errigalWhite: "#F0F2F5",
         whiteSmoke: "#f6f6f6",
         walrus: "#9b9b9e",
+        olypurWhite: "#d6d6d7",
         iron: "#5e5e60",
         cocoBlack: "#1b1b1c",
       },

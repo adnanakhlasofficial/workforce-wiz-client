@@ -29,8 +29,8 @@ const SignIn = () => {
   };
 
   return (
-    <section className="mx-auto my-20 flex gap-12 flex-row-reverse justify-center items-center rounded-lg bg-white py-20 !w-max !px-20">
-      <div className="max-w-sm">
+    <section className="mx-auto my-20 flex flex-col  gap-12 lg:flex-row-reverse justify-center items-center  rounded-lg bg-white p-10 lg:p-20 w-fit ">
+      <div className="w-1/2 lg:max-w-sm">
         <img src={signIn} alt="" />
       </div>
       <div className=" rounded-lg max-w-sm w-full">
