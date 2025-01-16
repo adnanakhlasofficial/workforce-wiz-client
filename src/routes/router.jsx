@@ -7,6 +7,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import Dashboard from "../layouts/Dashboard";
 import Worksheet from "../pages/Worksheet/Worksheet";
 import Profile from "../pages/Profile/Profile";
+import PaymentHistory from "../pages/PaymentHistory/PaymentHistory";
 
 export const router = createBrowserRouter([
   {
@@ -42,6 +43,10 @@ export const router = createBrowserRouter([
       {
         path: "work-sheet",
         element: <Worksheet />,
+      },
+      {
+        path: "payment-history",
+        element: <PaymentHistory />,
       },
     ],
   },

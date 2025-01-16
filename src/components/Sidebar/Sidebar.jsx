@@ -48,10 +48,15 @@ const Sidebar = () => {
             <Link to={"/"}>Workforce Wiz</Link>
           </h1>
         </div>
-        <ul className="grow">
+        <ul className="grow space-y-3">
           <SidebarItem
             label={"Work Sheet"}
             href={"work-sheet"}
+            icon={IoDocument}
+          />
+          <SidebarItem
+            label={"Payment History"}
+            href={"payment-history"}
             icon={IoDocument}
           />
         </ul>

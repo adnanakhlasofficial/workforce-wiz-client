@@ -33,15 +33,16 @@ const Worksheet = () => {
   };
 
   return (
-    <section className="flex gap-2">
+    <section className="flex flex-col-reverse gap-2">
+      {/* table */}
       <div className="w-full bg-white p-4 rounded-lg">
         <table className="w-full border">
           <thead className="border-b bg-olypurWhite rounded-lg">
-            <tr className=" *:px-4 *:py-1">
+            <tr className=" *:px-4 *:py-1 *:text-left">
               <th></th>
               <th>Task</th>
-              <th>Hour</th>
-              <th>Data</th>
+              <th className="!text-right">Hours</th>
+              <th className="!text-right">Date</th>
               <th></th>
               <th></th>
             </tr>
@@ -52,12 +53,12 @@ const Worksheet = () => {
               <td>Sales</td>
               <td className="text-right">5</td>
               <td className="text-right">{format(new Date(startDate), "P")}</td>
-              <td className="text-xs font-medium text-center ">
+              <td className="text-xs font-bold text-center ">
                 <button className="px-4 py-1 w-full bg-green-500/15 text-green-600 rounded-full">
                   Edit
                 </button>
               </td>
-              <td className="text-xs font-medium text-center ">
+              <td className="text-xs font-bold text-center ">
                 <button className="px-4 py-1 w-full bg-red-500/15 text-red-600 rounded-full">
                   Delete
                 </button>
@@ -66,7 +67,8 @@ const Worksheet = () => {
           </tbody>
         </table>
       </div>
-      <div className=" rounded-lg max-w-sm w-full !bg-white !opacity-100 p-4 shadow-lg">
+      {/* form */}
+      <div className=" rounded-lg w-full bg-white p-4 shadow-lg">
         <h2 className="text-xl font-bold mb-6">Create Your Profile</h2>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
           <div className="w-full">
