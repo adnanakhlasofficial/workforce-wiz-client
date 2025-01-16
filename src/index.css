@@ -16,10 +16,10 @@
     @apply bg-whiteSmoke py-2 block px-4 rounded-md text-sm text-cocoBlack;
   }
   .side-inactive {
-    @apply px-6 py-2 bg-primary/10 hover:bg-primary/60 text-cocoBlack transition duration-300 rounded-md text-lg font-semibold flex items-center gap-2;
+    @apply px-6 py-2 bg-primary/10 hover:bg-primary/60 text-cocoBlack transition duration-300 rounded-md text-base font-semibold flex items-center gap-2;
   }
   .side-active {
-    @apply px-6 py-2 bg-midnightOcean/80 hover:bg-midnightOcean text-errigalWhite transition duration-300 rounded-md text-lg font-semibold flex items-center gap-2;
+    @apply px-6 py-2 bg-midnightOcean/80 hover:bg-midnightOcean text-errigalWhite transition duration-300 rounded-md text-base font-semibold flex items-center gap-2;
   }
 }
 

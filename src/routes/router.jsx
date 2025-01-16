@@ -9,6 +9,7 @@ import Worksheet from "../pages/Worksheet/Worksheet";
 import Profile from "../pages/Profile/Profile";
 import PaymentHistory from "../pages/PaymentHistory/PaymentHistory";
 import PrivateRoute from "./PrivateRoute";
+import EmployeeList from "../pages/EmployeeList/EmployeeList";
 
 export const router = createBrowserRouter([
   {
@@ -62,6 +63,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <PaymentHistory />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "employee-list",
+        element: (
+          <PrivateRoute>
+            <EmployeeList />
           </PrivateRoute>
         ),
       },
