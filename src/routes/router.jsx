@@ -8,6 +8,7 @@ import Dashboard from "../layouts/Dashboard";
 import Worksheet from "../pages/Worksheet/Worksheet";
 import Profile from "../pages/Profile/Profile";
 import PaymentHistory from "../pages/PaymentHistory/PaymentHistory";
+import PrivateRoute from "./PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -34,19 +35,35 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    element: <Dashboard />,
+    element: (
+      <PrivateRoute>
+        <Dashboard />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,
-        element: <Profile />,
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
       },
       {
         path: "work-sheet",
-        element: <Worksheet />,
+        element: (
+          <PrivateRoute>
+            <Worksheet />
+          </PrivateRoute>
+        ),
       },
       {
         path: "payment-history",
-        element: <PaymentHistory />,
+        element: (
+          <PrivateRoute>
+            <PaymentHistory />
+          </PrivateRoute>
+        ),
       },
     ],
   },

@@ -10,10 +10,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.config";
+import useAxiosSecure from "../hooks/useAxiosSecure";
 
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
+  const axiosSecure = useAxiosSecure();
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
@@ -43,13 +45,22 @@ const AuthProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       if (currentUser) {
         setUser(currentUser);
         setLoading(false);
+        try {
+          const { data } = await axiosSecure.post("/login", {
+            email: currentUser?.email,
+          });
+          console.log(data);
+        } catch (error) {
+          console.log(error);
+        }
       } else {
         setUser(null);
         setLoading(false);
+        await axiosSecure.post("/logout");
       }
     });
 

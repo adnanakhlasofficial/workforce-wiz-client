@@ -7,12 +7,17 @@ import { getImageUrl } from "../../utilities";
 import useAuth from "../../hooks/useAuth";
 import { toast } from "react-toastify";
 import { useState } from "react";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
 
 const SignUp = () => {
   const { createUser, updateUser } = useAuth();
   const [loading, setLoading] = useState(false);
   const [passwordValidation, setPasswordValidation] = useState(false);
+  const [employeeRole, setEmployeeRole] = useState("Select Role");
+  const [employeeDesignation, setEmployeeDesignation] =
+    useState("Select Designation");
   const navigate = useNavigate();
+  const axiosSecure = useAxiosSecure();
 
   const handleSignUp = async (e) => {
     e.preventDefault();
@@ -27,6 +32,10 @@ const SignUp = () => {
     const imageFile = form.image.files[0];
     // image url get
     const imageURL = await getImageUrl(imageFile);
+    const role = employeeRole;
+    const designation =
+      employeeDesignation === "Select Designation" ? null : employeeDesignation;
+    const bankAccount = form.bankAccount.value;
 
     if (password !== confirmPassword) {
       setLoading(false);
@@ -39,10 +48,21 @@ const SignUp = () => {
       return setPasswordValidation(true);
     }
 
+    const employeeInfo = {
+      name,
+      email,
+      password,
+      imageURL,
+      role,
+      designation,
+      bankAccount,
+    };
+
     try {
       await createUser(email, password);
       await updateUser({ displayName: name, photoURL: imageURL });
       toast.success("Successfully signed up!");
+      await axiosSecure.post("/employee", employeeInfo);
       setLoading(false);
       navigate("/");
     } catch (error) {
@@ -85,6 +105,59 @@ const SignUp = () => {
             id={"email"}
             type={"email"}
             placeholder={"Enter your email"}
+          />
+          {/* Role */}
+          <div className="flex flex-col gap-1">
+            <label className="capitalize font-semibold " htmlFor="role">
+              Role:
+            </label>
+            <select
+              value={employeeRole}
+              onChange={(e) => setEmployeeRole(e.target.value)}
+              required
+              id="role"
+              name="role"
+              className="input-field !w-full"
+            >
+              <option disabled value="Select Role">
+                Select Role
+              </option>
+              <option value="HR">HR</option>
+              <option value="Employee">Employee</option>
+            </select>
+          </div>
+          {/* Designation
+           */}
+          <div className="flex flex-col gap-1">
+            <label className="capitalize font-semibold " htmlFor="designation">
+              Designation:
+            </label>
+            <select
+              value={employeeDesignation}
+              onChange={(e) => setEmployeeDesignation(e.target.value)}
+              required
+              disabled={employeeRole !== "Employee" ? true : false}
+              id="designation"
+              name="designation"
+              className="input-field !w-full"
+            >
+              <option disabled value="Select Designation">
+                Select Designation
+              </option>
+              <option value="Sales Assistant">Sales Assistant</option>
+              <option value="Social Media executive">
+                Social Media executive
+              </option>
+              <option value="Digital Marketer">Digital Marketer</option>
+              <option value="Paper Work">Paper Work</option>
+            </select>
+          </div>
+
+          <InputField
+            label={"bank account"}
+            id={"bankAccount"}
+            type={"number"}
+            placeholder={"Enter your bank account number"}
           />
 
           <InputField
