@@ -5,20 +5,53 @@ import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import { useState } from "react";
 import { toast } from "react-toastify";
-import { format } from "date-fns";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import useAuth from "../../hooks/useAuth";
+import Loader from "../../components/shared/Loader/Loader";
+import WorksheetRow from "./WorksheetRow";
+
 const Worksheet = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [hours, setHours] = useState(1);
+  const axiosSecure = useAxiosSecure();
+  const { user } = useAuth();
 
-  console.log(hours);
+  const {
+    data: tasks,
+    isLoading,
+    isError,
+    error,
+    refetch,
+  } = useQuery({
+    queryKey: ["tasks", user?.email],
+    queryFn: async () => {
+      const { data } = await axiosSecure(`/employee/tasks/${user?.email}`);
+      return data;
+    },
+  });
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const task = form.task.value;
     const hours = form.hours.value;
     const date = startDate;
-    console.log({ task, hours, date });
+    const taskInfo = {
+      name: user?.displayName,
+      email: user?.email,
+      task,
+      hours,
+      date,
+    };
+    try {
+      await axiosSecure.post("/employee/task", taskInfo);
+      toast.success("Task added successfully!");
+      refetch();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong.");
+    }
   };
 
   const handleHours = (e) => {
@@ -32,10 +65,17 @@ const Worksheet = () => {
     }
   };
 
+  if (isLoading) return <Loader />;
+
+  if (isError) return <p>{error}</p>;
+
   return (
     <section className="flex flex-col-reverse gap-2">
       {/* table */}
       <div className="w-full bg-white p-4 rounded-lg">
+        <h2 className="text-xl font-bold mb-6">
+          Your completed tasks ({tasks.length})
+        </h2>
         <table className="w-full border">
           <thead className="border-b bg-olypurWhite rounded-lg">
             <tr className=" *:px-4 *:py-1 *:text-left">
@@ -48,28 +88,20 @@ const Worksheet = () => {
             </tr>
           </thead>
           <tbody className="">
-            <tr className="border-b *:px-4 *:py-2 hover:bg-whiteSmoke">
-              <td className="text-right">1</td>
-              <td>Sales</td>
-              <td className="text-right">5</td>
-              <td className="text-right">{format(new Date(startDate), "P")}</td>
-              <td className="text-xs font-bold text-center ">
-                <button className="px-4 py-1 w-full bg-green-500/15 text-green-600 rounded-full">
-                  Edit
-                </button>
-              </td>
-              <td className="text-xs font-bold text-center ">
-                <button className="px-4 py-1 w-full bg-red-500/15 text-red-600 rounded-full">
-                  Delete
-                </button>
-              </td>
-            </tr>
+            {tasks.map((task, idx) => (
+              <WorksheetRow
+                key={task._id}
+                employeeTask={task}
+                idx={idx}
+                refetch={refetch}
+              />
+            ))}
           </tbody>
         </table>
       </div>
       {/* form */}
       <div className=" rounded-lg w-full bg-white p-4 shadow-lg">
-        <h2 className="text-xl font-bold mb-6">Create Your Profile</h2>
+        <h2 className="text-xl font-bold mb-6">Submit your task</h2>
         <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
           <div className="w-full">
             <label htmlFor="task">Task</label>

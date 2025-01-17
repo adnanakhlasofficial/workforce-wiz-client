@@ -1,14 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import Loader from "../../components/shared/Loader/Loader";
-import { FaCheck } from "react-icons/fa6";
-import { CgClose } from "react-icons/cg";
-import { toast } from "react-toastify";
 import useAuth from "../../hooks/useAuth";
+import TableRow from "./TableRow";
 
 const EmployeeList = () => {
-  const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const axiosSecure = useAxiosSecure();
 
   const {
     data: employees,
@@ -27,18 +25,6 @@ const EmployeeList = () => {
   if (isLoading) return <Loader />;
 
   if (isError) return <p>{error}</p>;
-
-  const handleVerify = async (id) => {
-    console.log(id);
-    try {
-      await axiosSecure.patch(`/employee/${id}`);
-      toast.success("Employee verified successfully!");
-      refetch();
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong.");
-    }
-  };
 
   return (
     <div className="w-full bg-white p-4 rounded-lg">
@@ -60,38 +46,16 @@ const EmployeeList = () => {
         </thead>
         <tbody className="">
           {employees.map((employee, idx) => (
-            <tr
+            <TableRow
               key={employee._id}
-              className="border-b *:px-4 *:py-2 hover:bg-whiteSmoke"
-            >
-              <td>{idx + 1}</td>
-              <td>{employee.name}</td>
-              <td>{employee.email}</td>
-              <td className="flex items-center justify-center">
-                {employee.verified ? (
-                  <span>
-                    <FaCheck
-                      className="text-errigalWhite bg-green-500 p-1 rounded-sm"
-                      size={24}
-                    />
-                  </span>
-                ) : (
-                  <button onClick={() => handleVerify(employee._id)}>
-                    <CgClose
-                      className="text-errigalWhite bg-red-500 p-1 rounded-sm"
-                      size={24}
-                    />
-                  </button>
-                )}
-              </td>
-              <td>{employee.bankAccount}</td>
-              <td>${employee.salary}</td>
-              <td>Pay</td>
-              <td>Details</td>
-            </tr>
+              employee={employee}
+              idx={idx}
+              refetch={refetch}
+            />
           ))}
         </tbody>
       </table>
+      {/* <button onClick={() => setIsOpen(true)}>Open dialog</button> */}
     </div>
   );
 };
