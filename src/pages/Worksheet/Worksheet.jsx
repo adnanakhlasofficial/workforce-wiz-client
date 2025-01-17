@@ -13,7 +13,7 @@ import WorksheetRow from "./WorksheetRow";
 
 const Worksheet = () => {
   const [startDate, setStartDate] = useState(new Date());
-  const [hours, setHours] = useState(1);
+  const [hour, setHours] = useState(1);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
 
@@ -31,11 +31,22 @@ const Worksheet = () => {
     },
   });
 
+  const handleHours = (e) => {
+    const val = parseInt(e.target.value);
+    if (val < 1) {
+      setHours(1);
+      toast.error("Hours cannot be less than 1!");
+      return;
+    } else {
+      setHours(val);
+    }
+  };
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     const form = e.target;
     const task = form.task.value;
-    const hours = form.hours.value;
+    const hours = hour;
     const date = startDate;
     const taskInfo = {
       name: user?.displayName,
@@ -54,17 +65,6 @@ const Worksheet = () => {
     }
   };
 
-  const handleHours = (e) => {
-    const val = parseInt(e.target.value);
-    if (val < 1) {
-      setHours(1);
-      toast.error("Hours cannot be less than 1!");
-      return;
-    } else {
-      setHours(val);
-    }
-  };
-
   if (isLoading) return <Loader />;
 
   if (isError) return <p>{error}</p>;
@@ -76,28 +76,30 @@ const Worksheet = () => {
         <h2 className="text-xl font-bold mb-6">
           Your completed tasks ({tasks.length})
         </h2>
-        <table className="w-full border">
-          <thead className="border-b bg-olypurWhite rounded-lg">
-            <tr className=" *:px-4 *:py-1 *:text-left">
-              <th></th>
-              <th>Task</th>
-              <th className="!text-right">Hours</th>
-              <th className="!text-right">Date</th>
-              <th></th>
-              <th></th>
-            </tr>
-          </thead>
-          <tbody className="">
-            {tasks.map((task, idx) => (
-              <WorksheetRow
-                key={task._id}
-                employeeTask={task}
-                idx={idx}
-                refetch={refetch}
-              />
-            ))}
-          </tbody>
-        </table>
+        <div className="overflow-auto">
+          <table className="w-full border">
+            <thead className="border-b bg-olypurWhite rounded-lg">
+              <tr className=" *:px-4 *:py-1 *:text-left">
+                <th></th>
+                <th>Task</th>
+                <th className="!text-right">Hours</th>
+                <th className="!text-right">Date</th>
+                <th></th>
+                <th></th>
+              </tr>
+            </thead>
+            <tbody className="">
+              {tasks.map((task, idx) => (
+                <WorksheetRow
+                  key={task._id}
+                  employeeTask={task}
+                  idx={idx}
+                  refetch={refetch}
+                />
+              ))}
+            </tbody>
+          </table>
+        </div>
       </div>
       {/* form */}
       <div className=" rounded-lg w-full bg-white p-4 shadow-lg">
@@ -117,7 +119,7 @@ const Worksheet = () => {
             </select>
           </div>
           <InputField
-            value={hours}
+            value={hour}
             onChange={handleHours}
             label={"Hours Worked"}
             type={"number"}

@@ -40,7 +40,7 @@ const Sidebar = () => {
         </button>
       </div>
       <div
-        className={`bg-whiteSmoke absolute top-0 ${
+        className={`bg-whiteSmoke absolute lg:sticky top-0 ${
           sidebarOpen ? "left-0" : "-left-full"
         } h-screen px-9 flex flex-col py-8 shadow-lg lg:left-0 transition-all duration-300`}
       >

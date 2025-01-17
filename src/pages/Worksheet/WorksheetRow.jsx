@@ -3,11 +3,13 @@ import Modal from "../../components/shared/Modal/Modal";
 import { useState } from "react";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { toast } from "react-toastify";
+import FormModal from "./FormModal";
 
 const WorksheetRow = ({ employeeTask, idx, refetch }) => {
   const { task, hours, date, _id } = employeeTask;
   let [isOpen, setIsOpen] = useState(false);
   const axiosSecure = useAxiosSecure();
+  let [modalOpen, setModalOpen] = useState(false);
 
   const handleDelete = async () => {
     try {
@@ -30,7 +32,10 @@ const WorksheetRow = ({ employeeTask, idx, refetch }) => {
         <td className="text-right">{hours}</td>
         <td className="text-right">{format(new Date(date), "P")}</td>
         <td className="text-xs font-bold text-center ">
-          <button className="px-4 py-1 w-full bg-green-500/15 text-green-600 rounded-full">
+          <button
+            onClick={() => setModalOpen(true)}
+            className="px-4 py-1 w-full bg-green-500/15 text-green-600 rounded-full"
+          >
             Edit
           </button>
         </td>
@@ -51,6 +56,12 @@ const WorksheetRow = ({ employeeTask, idx, refetch }) => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         handleAction={handleDelete}
+      />
+      <FormModal
+        modalOpen={modalOpen}
+        setModalOpen={setModalOpen}
+        employeeTask={employeeTask}
+        refetch={refetch}
       />
     </>
   );
