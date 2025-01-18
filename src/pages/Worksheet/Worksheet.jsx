@@ -104,9 +104,12 @@ const Worksheet = () => {
       {/* form */}
       <div className=" rounded-lg w-full bg-white p-4 shadow-lg">
         <h2 className="text-xl font-bold mb-6">Submit your task</h2>
-        <form onSubmit={handleSubmit} className="grid grid-cols-1 gap-4">
+        <form
+          onSubmit={handleSubmit}
+          className="grid grid-cols-3 items-end gap-4"
+        >
           <div className="w-full">
-            <label htmlFor="task">Task</label>
+            <label htmlFor="task">Task:</label>
             <select
               id="task"
               name="task"
@@ -121,7 +124,7 @@ const Worksheet = () => {
           <InputField
             value={hour}
             onChange={handleHours}
-            label={"Hours Worked"}
+            label={"Hours"}
             type={"number"}
             placeholder={"Hours"}
             id={"hours"}

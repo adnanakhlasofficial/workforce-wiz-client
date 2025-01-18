@@ -5,7 +5,7 @@ import useAuth from "../../hooks/useAuth";
 import TableRow from "./TableRow";
 
 const EmployeeList = () => {
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
   const axiosSecure = useAxiosSecure();
 
   const {
@@ -22,7 +22,7 @@ const EmployeeList = () => {
     },
   });
 
-  if (isLoading) return <Loader />;
+  if (loading || isLoading) return <Loader />;
 
   if (isError) return <p>{error}</p>;
 

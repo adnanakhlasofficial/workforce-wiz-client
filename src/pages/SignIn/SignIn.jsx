@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import signIn from "../../assets/illustrations/sign-in.svg";
 import Button from "../../components/shared/Button/Button";
 import InputField from "../../components/shared/InputField/InputField";
@@ -10,6 +10,8 @@ import { useState } from "react";
 const SignIn = () => {
   const { loginUser } = useAuth();
   const [loading, setLoading] = useState(false);
+  const { state } = useLocation();
+  const navigate = useNavigate();
   const handleSignIn = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -20,7 +22,8 @@ const SignIn = () => {
     try {
       await loginUser(email, password);
       toast.success("Successfully signed in!");
-      setLoading(false);
+      navigate(state ? state : "/");
+      // setLoading(false);
     } catch (error) {
       console.log(error);
       toast.error("Sign in failed. Please try again.");
