@@ -10,6 +10,7 @@ import Profile from "../pages/Profile/Profile";
 import PaymentHistory from "../pages/PaymentHistory/PaymentHistory";
 import PrivateRoute from "./PrivateRoute";
 import EmployeeList from "../pages/EmployeeList/EmployeeList";
+import Payroll from "../pages/Payroll/Payroll";
 
 export const router = createBrowserRouter([
   {
@@ -71,6 +72,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <EmployeeList />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payroll",
+        element: (
+          <PrivateRoute>
+            <Payroll />
           </PrivateRoute>
         ),
       },

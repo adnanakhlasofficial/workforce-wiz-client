@@ -10,12 +10,14 @@ import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../hooks/useAuth";
 import Loader from "../../components/shared/Loader/Loader";
 import WorksheetRow from "./WorksheetRow";
+import useUser from "../../hooks/useUser";
 
 const Worksheet = () => {
   const [startDate, setStartDate] = useState(new Date());
   const [hour, setHours] = useState(1);
   const axiosSecure = useAxiosSecure();
   const { user } = useAuth();
+  const { data } = useUser();
 
   const {
     data: tasks,
@@ -44,6 +46,7 @@ const Worksheet = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(data);
     const form = e.target;
     const task = form.task.value;
     const hours = hour;
@@ -51,10 +54,12 @@ const Worksheet = () => {
     const taskInfo = {
       name: user?.displayName,
       email: user?.email,
-      task,
+      designation: data?.designation,
       hours,
       date,
+      task,
     };
+    console.log(taskInfo);
     try {
       await axiosSecure.post("/employee/task", taskInfo);
       toast.success("Task added successfully!");
@@ -67,7 +72,7 @@ const Worksheet = () => {
 
   if (isLoading) return <Loader />;
 
-  if (isError) return <p>{error}</p>;
+  if (isError) return <p>{error.message}</p>;
 
   return (
     <section className="flex flex-col-reverse gap-2">

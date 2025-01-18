@@ -65,6 +65,11 @@ const Sidebar = () => {
             href={"/dashboard/employee-list"}
             icon={FaUsers}
           />
+          <SidebarItem
+            label={"Pay Roll"}
+            href={"/dashboard/payroll"}
+            icon={FaUsers}
+          />
         </ul>
         <ul className="space-y-3">
           <SidebarItem

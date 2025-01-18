@@ -4,12 +4,15 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaCheck } from "react-icons/fa6";
+import PayModal from "./PayModal";
 
 const TableRow = ({ employee, idx, refetch }) => {
   const axiosSecure = useAxiosSecure();
   let [isOpen, setIsOpen] = useState(false);
-
-  const { _id, name, email, verified, bankAccount, salary } = employee;
+  let [payModal, setPayModal] = useState(false);
+  const { _id, name, email, verified, bankAccount, salary, designation } =
+    employee;
+  const [salaryPayDate, setSalaryPayDate] = useState(new Date());
 
   const handleVerify = async () => {
     console.log(_id);
@@ -22,6 +25,26 @@ const TableRow = ({ employee, idx, refetch }) => {
       toast.error("Something went wrong.");
     } finally {
       setIsOpen(false);
+    }
+  };
+  const handlePay = async (e) => {
+    e.preventDefault();
+    const employeeTaskPay = {
+      name,
+      email,
+      bankAccount,
+      salary,
+      designation,
+      date: salaryPayDate,
+    };
+    try {
+      await axiosSecure.post("/employee/payroll", employeeTaskPay);
+      toast.success("Payroll Submitted to Admin.");
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong.");
+    } finally {
+      setPayModal(false);
     }
   };
 
@@ -50,8 +73,20 @@ const TableRow = ({ employee, idx, refetch }) => {
         </td>
         <td>{bankAccount}</td>
         <td>${salary}</td>
-        <td>Pay</td>
-        <td>Details</td>
+        <td>
+          <button
+            disabled={verified ? false : true}
+            onClick={() => setPayModal(true)}
+            className="px-6 py-1 bg-green-100 text-green-500 rounded-full text-sm font-semibold disabled:text-errigalWhite disabled:bg-walrus"
+          >
+            Pay
+          </button>
+        </td>
+        <td>
+          <button className="px-6 py-1 bg-blue-100 text-blue-500 rounded-full text-sm font-semibold">
+            Details
+          </button>
+        </td>
       </tr>
       <Modal
         title={"Confirm Employee Verification"}
@@ -61,6 +96,14 @@ const TableRow = ({ employee, idx, refetch }) => {
         isOpen={isOpen}
         setIsOpen={setIsOpen}
         handleAction={handleVerify}
+      />
+      <PayModal
+        employee={employee}
+        payModal={payModal}
+        setPayModal={setPayModal}
+        salaryPayDate={salaryPayDate}
+        setSalaryPayDate={setSalaryPayDate}
+        handlePay={handlePay}
       />
     </>
   );

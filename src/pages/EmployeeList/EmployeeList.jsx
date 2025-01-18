@@ -24,7 +24,7 @@ const EmployeeList = () => {
 
   if (loading || isLoading) return <Loader />;
 
-  if (isError) return <p>{error}</p>;
+  if (isError) return <p>{error.message}</p>;
 
   return (
     <div className="w-full bg-white p-4 rounded-lg">
