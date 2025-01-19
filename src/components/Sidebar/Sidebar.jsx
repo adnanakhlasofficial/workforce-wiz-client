@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 import { AiOutlineBars } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { FaUsers, FaWallet } from "react-icons/fa6";
+import { FaBarsProgress, FaUsers, FaWallet } from "react-icons/fa6";
 
 const Sidebar = () => {
   const { logoutUser } = useAuth();
@@ -64,6 +64,11 @@ const Sidebar = () => {
             label={"Employee List"}
             href={"/dashboard/employee-list"}
             icon={FaUsers}
+          />
+          <SidebarItem
+            label={"Progress"}
+            href={"/dashboard/progress"}
+            icon={FaBarsProgress}
           />
           <SidebarItem
             label={"Pay Roll"}

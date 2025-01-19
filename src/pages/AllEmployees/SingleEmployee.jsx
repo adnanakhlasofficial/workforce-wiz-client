@@ -52,7 +52,7 @@ const SingleEmployee = ({ employee, idx, refetch }) => {
 
   return (
     <>
-      <tr className=" *:px-4 *:py-1 *:text-left *:font-medium">
+      <tr className=" *:px-4 *:py-1 *:text-left *:font-medium border-b">
         <td>{idx + 1}</td>
         <td>{name}</td>
         <td>{email}</td>
