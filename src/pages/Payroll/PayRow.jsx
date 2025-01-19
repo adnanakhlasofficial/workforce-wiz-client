@@ -1,5 +1,4 @@
 import { format } from "date-fns";
-import React from "react";
 
 const PayRow = ({ payroll, idx }) => {
   console.log(payroll);

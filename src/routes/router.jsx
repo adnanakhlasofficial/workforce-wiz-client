@@ -11,6 +11,7 @@ import PaymentHistory from "../pages/PaymentHistory/PaymentHistory";
 import PrivateRoute from "./PrivateRoute";
 import EmployeeList from "../pages/EmployeeList/EmployeeList";
 import Payroll from "../pages/Payroll/Payroll";
+import AllEmployees from "../pages/AllEmployees/AllEmployees";
 
 export const router = createBrowserRouter([
   {
@@ -80,6 +81,14 @@ export const router = createBrowserRouter([
         element: (
           <PrivateRoute>
             <Payroll />
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-employees",
+        element: (
+          <PrivateRoute>
+            <AllEmployees />
           </PrivateRoute>
         ),
       },
