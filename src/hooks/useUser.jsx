@@ -12,7 +12,6 @@ const useUser = () => {
       const { data } = await axiosSecure(
         `http://localhost:3000/employee/${user?.email}`
       );
-      console.log(data);
       return data;
     },
   });

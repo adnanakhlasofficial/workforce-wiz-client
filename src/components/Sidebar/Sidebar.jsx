@@ -7,10 +7,12 @@ import { AiOutlineBars } from "react-icons/ai";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 import { FaBarsProgress, FaUsers, FaWallet } from "react-icons/fa6";
+import useUser from "../../hooks/useUser";
 
 const Sidebar = () => {
-  const { logoutUser } = useAuth();
+  const { logoutUser, loading } = useAuth();
   const [sidebarOpen, setSidebarOpen] = useState(false);
+  const { data } = useUser();
 
   const handleLogout = async () => {
     try {
@@ -50,41 +52,57 @@ const Sidebar = () => {
           </h1>
         </div>
         <ul className="grow space-y-3">
-          <SidebarItem
-            label={"Work Sheet"}
-            href={"/dashboard/work-sheet"}
-            icon={IoDocument}
-          />
-          <SidebarItem
-            label={"Payment History"}
-            href={"/dashboard/payment-history"}
-            icon={IoDocument}
-          />
-          <SidebarItem
-            label={"Employee List"}
-            href={"/dashboard/employee-list"}
-            icon={FaUsers}
-          />
-          <SidebarItem
-            label={"Progress"}
-            href={"/dashboard/progress"}
-            icon={FaBarsProgress}
-          />
-          <SidebarItem
-            label={"Pay Roll"}
-            href={"/dashboard/payroll"}
-            icon={FaWallet}
-          />
-          <SidebarItem
-            label={"All Employees"}
-            href={"/dashboard/all-employees"}
-            icon={FaUsers}
-          />
+          {data?.role === "Employee" && (
+            <>
+              {/* Employee */}
+              <SidebarItem
+                label={"Work Sheet"}
+                href={"/dashboard/work-sheet"}
+                icon={IoDocument}
+              />
+              <SidebarItem
+                label={"Payment History"}
+                href={"/dashboard/payment-history"}
+                icon={IoDocument}
+              />
+            </>
+          )}
+          {data?.role === "HR" && (
+            <>
+              {/* HR */}
+              <SidebarItem
+                label={"Employee List"}
+                href={"/dashboard/employee-list"}
+                icon={FaUsers}
+              />
+              <SidebarItem
+                label={"Progress"}
+                href={"/dashboard/progress"}
+                icon={FaBarsProgress}
+              />
+            </>
+          )}
+          {data?.role === "Admin" && (
+            <>
+              {/* Admin */}
+              <SidebarItem
+                label={"Pay Roll"}
+                href={"/dashboard/payroll"}
+                icon={FaWallet}
+              />
+              <SidebarItem
+                label={"All Employees"}
+                href={"/dashboard/all-employees"}
+                icon={FaUsers}
+              />
+            </>
+          )}
         </ul>
+
         <ul className="space-y-3">
           <SidebarItem
             label={"Profile"}
-            href={"/dashboard"}
+            href={"/dashboard/profile"}
             icon={IoSettingsSharp}
           />
           <button

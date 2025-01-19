@@ -13,6 +13,9 @@ import EmployeeList from "../pages/EmployeeList/EmployeeList";
 import Payroll from "../pages/Payroll/Payroll";
 import AllEmployees from "../pages/AllEmployees/AllEmployees";
 import Progress from "../pages/Progress/Progress";
+import EmployeeRoute from "./EmployeeRoute";
+import HrRoute from "./HrRoute";
+import AdminRoute from "./AdminRoute";
 
 export const router = createBrowserRouter([
   {
@@ -54,10 +57,20 @@ export const router = createBrowserRouter([
         ),
       },
       {
+        path: "profile",
+        element: (
+          <PrivateRoute>
+            <Profile />
+          </PrivateRoute>
+        ),
+      },
+      {
         path: "work-sheet",
         element: (
           <PrivateRoute>
-            <Worksheet />
+            <EmployeeRoute>
+              <Worksheet />
+            </EmployeeRoute>
           </PrivateRoute>
         ),
       },
@@ -65,7 +78,9 @@ export const router = createBrowserRouter([
         path: "payment-history",
         element: (
           <PrivateRoute>
-            <PaymentHistory />
+            <EmployeeRoute>
+              <PaymentHistory />
+            </EmployeeRoute>
           </PrivateRoute>
         ),
       },
@@ -73,23 +88,9 @@ export const router = createBrowserRouter([
         path: "employee-list",
         element: (
           <PrivateRoute>
-            <EmployeeList />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "payroll",
-        element: (
-          <PrivateRoute>
-            <Payroll />
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "all-employees",
-        element: (
-          <PrivateRoute>
-            <AllEmployees />
+            <HrRoute>
+              <EmployeeList />
+            </HrRoute>
           </PrivateRoute>
         ),
       },
@@ -97,7 +98,29 @@ export const router = createBrowserRouter([
         path: "progress",
         element: (
           <PrivateRoute>
-            <Progress />
+            <HrRoute>
+              <Progress />
+            </HrRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "payroll",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <Payroll />
+            </AdminRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "all-employees",
+        element: (
+          <PrivateRoute>
+            <AdminRoute>
+              <AllEmployees />
+            </AdminRoute>
           </PrivateRoute>
         ),
       },

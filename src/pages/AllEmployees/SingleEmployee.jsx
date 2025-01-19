@@ -50,6 +50,17 @@ const SingleEmployee = ({ employee, idx, refetch }) => {
     }
   };
 
+  const firedEmployee = async () => {
+    try {
+      await axiosSecure.patch(`/employee/fired/${email}`);
+      toast.success("The employee has been successfully terminated.");
+      refetch();
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
+    }
+  };
+
   return (
     <>
       <tr className=" *:px-4 *:py-1 *:text-left *:font-medium border-b">
@@ -69,14 +80,18 @@ const SingleEmployee = ({ employee, idx, refetch }) => {
           </button>
         </td>
         <td>
-          <button className="px-6 py-1 bg-red-100 text-red-500 rounded-full text-sm font-semibold disabled:text-errigalWhite disabled:bg-walrus">
-            Fire
+          <button
+            onClick={firedEmployee}
+            disabled={role === "Fired" ? true : false}
+            className="px-6 py-1 bg-red-100 text-red-500 rounded-full text-sm font-semibold disabled:text-errigalWhite disabled:bg-walrus"
+          >
+            {role === "Fired" ? "Fired" : "Fire"}
           </button>
         </td>
         <td>
           <button
             onClick={makeHR}
-            disabled={role === "HR" ? true : false}
+            disabled={role === "HR" || role === "Fired" ? true : false}
             className="px-6 py-1 bg-green-100 text-green-500 rounded-full text-sm font-semibold disabled:text-errigalWhite disabled:bg-walrus"
           >
             Make HR

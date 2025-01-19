@@ -21,9 +21,9 @@ const Profile = () => {
       <div className="bg-white shadow-lg rounded-2xl md:w-4/5 lg:w-3/5">
         <div className="flex flex-col items-center justify-center p-4 ">
           <img
-            alt="profile"
+            alt={name}
             src={user && user?.email ? user?.photoURL : <FaUserCircle />}
-            className="mx-auto object-cover rounded-full h-24 w-24  border-2 border-white "
+            className="p-4 mx-auto object-cover rounded-full h-28 w-28  border-2 border-white "
           />
 
           <p className="py-1 px-6 text- text-white bg-midnightOcean rounded-md mt-2">
