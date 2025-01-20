@@ -32,3 +32,7 @@
 body {
   @apply bg-[#eeeeee];
 }
+
+.swiper-pagination-bullet {
+  @apply !hidden;
+}

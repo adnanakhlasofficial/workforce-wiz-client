@@ -30,7 +30,7 @@ const PaymentHistory = () => {
   console.log(paymentHistories);
 
   return (
-    <div className="w-full bg-white p-4 rounded-lg">
+    <div className="w-full bg-white p-4 rounded-lg overflow-auto">
       <table className="w-full border">
         <thead className="border-b bg-olypurWhite rounded-lg">
           <tr className=" *:px-4 *:py-1 *:text-left">

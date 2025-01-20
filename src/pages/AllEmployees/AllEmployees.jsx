@@ -33,33 +33,35 @@ const AllEmployees = () => {
       <h2 className="mb-4 text-lg font-bold">
         Total Employees: {employees.length}
       </h2>
-      <table className="w-full border">
-        <thead className="border-b bg-olypurWhite rounded-lg">
-          <tr className=" *:px-4 *:py-1 *:text-left *:font-medium">
-            <th></th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Designation</th>
-            <th>Verfied</th>
-            <th>Bank Account</th>
-            <th>Salary</th>
-            <th>Adjust Salary</th>
-            <th>Fire</th>
-            <th>Make HR</th>
-            <th>Details</th>
-          </tr>
-        </thead>
-        <tbody className="">
-          {employees.map((singleEmployee, idx) => (
-            <SingleEmployee
-              key={singleEmployee._id}
-              employee={singleEmployee}
-              idx={idx}
-              refetch={refetch}
-            />
-          ))}
-        </tbody>
-      </table>
+      <div className="overflow-auto">
+        <table className="w-full border">
+          <thead className="border-b bg-olypurWhite rounded-lg">
+            <tr className=" *:px-4 *:py-1 *:text-left *:font-medium">
+              <th></th>
+              <th>Name</th>
+              <th>Email</th>
+              <th>Designation</th>
+              <th>Verfied</th>
+              <th>Bank Account</th>
+              <th>Salary</th>
+              <th>Adjust Salary</th>
+              <th>Fire</th>
+              <th>Make HR</th>
+              <th>Details</th>
+            </tr>
+          </thead>
+          <tbody className="">
+            {employees.map((singleEmployee, idx) => (
+              <SingleEmployee
+                key={singleEmployee._id}
+                employee={singleEmployee}
+                idx={idx}
+                refetch={refetch}
+              />
+            ))}
+          </tbody>
+        </table>
+      </div>
       {/* <button onClick={() => setIsOpen(true)}>Open dialog</button> */}
     </div>
   );

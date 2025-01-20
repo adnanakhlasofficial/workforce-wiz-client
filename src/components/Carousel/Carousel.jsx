@@ -5,6 +5,8 @@ import "swiper/css/pagination";
 import "swiper/css/navigation";
 import Slide from "../Slide/Slide";
 import bgImg1 from "../../assets/images/bgImg-1.jpg";
+import bgImg2 from "../../assets/images/bgImg-2.jpg";
+import bgImg3 from "../../assets/images/bgImg-3.jpg";
 
 const Carousel = () => {
   return (
@@ -33,7 +35,7 @@ const Carousel = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Slide
-            image={bgImg1}
+            image={bgImg2}
             title={"Seamless Onboarding Experience"}
             desc={
               "Welcome new hires with our efficient onboarding process, ensuring a smooth transition from day one. Image Type: A new employee being welcomed by their team, receiving a welcome package, or participating in an orientation session."
@@ -42,7 +44,7 @@ const Carousel = () => {
         </SwiperSlide>
         <SwiperSlide>
           <Slide
-            image={bgImg1}
+            image={bgImg3}
             title={"Boost Professional Growth"}
             desc={
               "Unlock your potential with our comprehensive training and development programs tailored to your career aspirations. Image Type: Employees participating in a workshop or training session, with visuals of learning materials and engaged participants."

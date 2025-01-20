@@ -10,7 +10,7 @@ const useUser = () => {
     queryKey: ["employee", user?.email],
     queryFn: async () => {
       const { data } = await axiosSecure(
-        `http://localhost:3000/employee/${user?.email}`
+        `https://workforce-wiz.vercel.app/employee/${user?.email}`
       );
       return data;
     },

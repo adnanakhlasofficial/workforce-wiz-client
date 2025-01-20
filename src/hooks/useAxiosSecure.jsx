@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 const useAxiosSecure = () => {
   const { logoutUser } = useAuth() || {};
   const axiosInstance = axios.create({
-    baseURL: "http://localhost:3000",
+    baseURL: "https://workforce-wiz.vercel.app",
     withCredentials: true,
   });
 
