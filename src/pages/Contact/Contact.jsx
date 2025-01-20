@@ -10,6 +10,7 @@ import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useUser from "../../hooks/useUser";
 import Loader from "../../components/shared/Loader/Loader";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 const Contact = () => {
   const axiosPublic = useAxiosPublic();
@@ -44,8 +45,10 @@ const Contact = () => {
 
     try {
       await axiosPublic.post(`/contacts`, messageInfo);
+      toast.success("Your message has been successfully sent.");
     } catch (error) {
       console.log(error);
+      toast.error("Something went wrong.");
     }
   };
 

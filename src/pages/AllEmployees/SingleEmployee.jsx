@@ -2,6 +2,7 @@ import { useState } from "react";
 import { toast } from "react-toastify";
 import SetSalaryModal from "./SetSalaryModal";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
+import { Link } from "react-router-dom";
 
 const SingleEmployee = ({ employee, idx, refetch }) => {
   console.log(employee);
@@ -97,7 +98,13 @@ const SingleEmployee = ({ employee, idx, refetch }) => {
             Make HR
           </button>
         </td>
-        <td>Details</td>
+        <td>
+          <Link to={`/dashboard/details/${email}`}>
+            <button className="px-6 py-1 bg-blue-100 text-blue-500 rounded-full text-sm font-semibold">
+              Details
+            </button>
+          </Link>
+        </td>
       </tr>
 
       <SetSalaryModal
