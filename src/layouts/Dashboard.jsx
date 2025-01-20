@@ -5,8 +5,8 @@ const Dashboard = () => {
   return (
     <div className="relative min-h-screen md:flex bg-errigalWhite">
       <Sidebar />
-      <div className="flex-1 ">
-        <div className="p-5">
+      <div className="flex-1 overflow-auto">
+        <div className="p-5 overflow-auto">
           <Outlet />
         </div>
       </div>

@@ -29,7 +29,7 @@ const AllEmployees = () => {
   console.log(employees);
 
   return (
-    <div className="w-full bg-white p-4 rounded-lg">
+    <div className="w-full bg-white p-4 rounded-lg overflow-auto">
       <h2 className="mb-4 text-lg font-bold">
         Total Employees: {employees.length}
       </h2>
