@@ -26,7 +26,7 @@ const EmployeeDetails = () => {
 
   console.log(details);
 
-  return <div>Employee Details</div>;
+  return <div className="flex gap-5">employeeDetails</div>;
 };
 
 export default EmployeeDetails;

@@ -84,7 +84,7 @@ const TableRow = ({ employee, idx, refetch }) => {
           </button>
         </td>
         <td>
-          <Link to={`/dashboard/details/${_id}`}>
+          <Link to={`/dashboard/details/${email}`}>
             <button className="px-6 py-1 bg-blue-100 text-blue-500 rounded-full text-sm font-semibold">
               Details
             </button>
