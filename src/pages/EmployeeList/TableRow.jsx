@@ -5,6 +5,7 @@ import { toast } from "react-toastify";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import { FaCheck } from "react-icons/fa6";
 import PayModal from "./PayModal";
+import { Link } from "react-router-dom";
 
 const TableRow = ({ employee, idx, refetch }) => {
   const axiosSecure = useAxiosSecure();
@@ -83,9 +84,11 @@ const TableRow = ({ employee, idx, refetch }) => {
           </button>
         </td>
         <td>
-          <button className="px-6 py-1 bg-blue-100 text-blue-500 rounded-full text-sm font-semibold">
-            Details
-          </button>
+          <Link to={`/dashboard/details/${_id}`}>
+            <button className="px-6 py-1 bg-blue-100 text-blue-500 rounded-full text-sm font-semibold">
+              Details
+            </button>
+          </Link>
         </td>
       </tr>
       <Modal

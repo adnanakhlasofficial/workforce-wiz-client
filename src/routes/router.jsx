@@ -16,6 +16,7 @@ import Progress from "../pages/Progress/Progress";
 import EmployeeRoute from "./EmployeeRoute";
 import HrRoute from "./HrRoute";
 import AdminRoute from "./AdminRoute";
+import EmployeeDetails from "../pages/EmployeeDetails/EmployeeDetails";
 
 export const router = createBrowserRouter([
   {
@@ -100,6 +101,16 @@ export const router = createBrowserRouter([
           <PrivateRoute>
             <HrRoute>
               <Progress />
+            </HrRoute>
+          </PrivateRoute>
+        ),
+      },
+      {
+        path: "details/:id",
+        element: (
+          <PrivateRoute>
+            <HrRoute>
+              <EmployeeDetails />
             </HrRoute>
           </PrivateRoute>
         ),

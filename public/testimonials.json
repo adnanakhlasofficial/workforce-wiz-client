@@ -1,0 +1,38 @@
+[
+  {
+    "id": 1,
+    "name": "Jane Doe, CEO of Tech Innovators",
+    "image": "https://i.ibb.co.com/ZxpGm0f/10003.jpg",
+    "message": "This service has been a game-changer for my business. The team is incredibly professional and dedicated to providing top-notch solutions."
+  },
+  {
+    "id": 2,
+    "name": "John Smith, Founder of Creative Solutions",
+    "image": "https://i.ibb.co.com/SXT7FTQ/10004.jpg",
+    "message": "I was impressed with the level of expertise and support I received. Highly recommend to anyone looking for quality results."
+  },
+  {
+    "id": 3,
+    "name": "David Wilson, Project Manager at GreenTech Solutions",
+    "image": "https://i.ibb.co.com/hZ6FTzY/10005.jpg",
+    "message": "Exceptional service from start to finish. The team went above and beyond to meet our needs."
+  },
+  {
+    "id": 4,
+    "name": "Emily Davis",
+    "image": "https://i.ibb.co.com/zrS7pnq/10001.jpg",
+    "message": "The personalized advice helped me gain clarity and set achievable career goals."
+  },
+  {
+    "id": 5,
+    "name": "Michael Brown, CTO of Future Tech",
+    "image": "https://i.ibb.co.com/YPB9fqz/10006.jpg",
+    "message": "Working with this team has been a fantastic experience. Their dedication to excellence is evident in every interaction."
+  },
+  {
+    "id": 6,
+    "name": "Emily Clark, Director of Operations at BlueWave Inc.",
+    "image": "https://i.ibb.co.com/j43XmfP/10002.jpg",
+    "message": "A highly professional team that always delivers on their promises. I couldn't be happier with the results"
+  }
+]
