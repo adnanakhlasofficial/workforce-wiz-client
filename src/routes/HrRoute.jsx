@@ -5,11 +5,11 @@ import useUser from "../hooks/useUser";
 
 const HrRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  const { data } = useUser();
+  const info = useUser();
 
-  if (loading) return <Loader />;
+  if (loading || info?.isLoading) return <Loader />;
 
-  if (user && data?.role === "HR") return children;
+  if (user && info?.data?.role === "HR") return children;
 
   return <Navigate to={"/dashboard"}></Navigate>;
 };

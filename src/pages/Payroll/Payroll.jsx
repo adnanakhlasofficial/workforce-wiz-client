@@ -11,6 +11,7 @@ const Payroll = () => {
     isLoading,
     isError,
     error,
+    refetch,
   } = useQuery({
     queryKey: ["payrolls"],
     queryFn: async () => {
@@ -43,7 +44,12 @@ const Payroll = () => {
           </thead>
           <tbody>
             {payrolls.map((payroll, idx) => (
-              <PayRow key={payroll._id} payroll={payroll} idx={idx} />
+              <PayRow
+                key={payroll._id}
+                payroll={payroll}
+                idx={idx}
+                refetch={refetch}
+              />
             ))}
           </tbody>
         </table>

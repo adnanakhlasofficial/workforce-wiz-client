@@ -5,11 +5,11 @@ import useUser from "../hooks/useUser";
 
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
-  const { data } = useUser();
+  const info = useUser();
 
-  if (loading) return <Loader />;
+  if (loading || info?.isLoading) return <Loader />;
 
-  if (user && data?.role === "Admin") return children;
+  if (user && info?.data?.role === "Admin") return children;
 
   return <Navigate to={"/dashboard"}></Navigate>;
 };
